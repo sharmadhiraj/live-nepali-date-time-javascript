@@ -1,4 +1,4 @@
-# Live Nepali Date Time JavaScript
+# Live Nepali Date Time
 
 Just include this nepali.js in project and create html elements with specified ids and you are good to go !
 
