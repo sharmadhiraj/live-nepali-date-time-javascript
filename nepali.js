@@ -1,4 +1,3 @@
-
 var nepali_years_and_days_in_months = [
     [2000, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
     [2001, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
@@ -98,44 +97,43 @@ var previousDate = null;
 function updateClock() {
     var currentDate = new Date();
     var timeString = addZero(currentDate.getHours()) + ":" + addZero(currentDate.getMinutes()) + ":" + addZero(currentDate.getSeconds());
-    setDataToID('TIME_IN_ENGLISH',timeString);
-    setDataToID('TIME_IN_NEPALI',localizeNumber(timeString));
+    setDataToID('TIME_IN_ENGLISH', timeString);
+    setDataToID('TIME_IN_NEPALI', localizeNumber(timeString));
 
-    if(!isSameDay(previousDate,currentDate)){
+    if (!isSameDay(previousDate, currentDate)) {
         var year = currentDate.getFullYear();
         var month = currentDate.getMonth() + 1;
         var day = currentDate.getDate();
-        var dateString = (convertEnglishDateToNepali(year,month,day));
+        var dateString = (convertEnglishDateToNepali(year, month, day));
 
-        setDataToID('DATE_IN_ENGLISH',dateString[0]);
-        setDataToID('DATE_IN_NEPALI',localizeNumber(dateString[1]));
+        setDataToID('DATE_IN_ENGLISH', dateString[0]);
+        setDataToID('DATE_IN_NEPALI', localizeNumber(dateString[1]));
 
-        console.log("Date Changed "+dateString);
+        console.log("Date Changed " + dateString);
     }
     previousDate = currentDate;
     setTimeout(updateClock, 1000);
 }
 
-function setDataToID(id,data){
+function setDataToID(id, data) {
     try {
         document.getElementById(id).innerHTML = data;
-    }catch(err) {
+    } catch (err) {
 
     }
 }
 
-function isSameDay(d1,d2){
+function isSameDay(d1, d2) {
 
-    if (d1 instanceof Date && d2 instanceof Date){
-        return (d1.getYear()==d2.getYear()) && (d1.getMonth()==d2.getMonth()) && (d1.getDay()==d2.getDay());
-    }else{
+    if (d1 instanceof Date && d2 instanceof Date) {
+        return (d1.getYear() == d2.getYear()) && (d1.getMonth() == d2.getMonth()) && (d1.getDay() == d2.getDay());
+    } else {
         return false;
     }
 
 }
 
-function isLeapYear(year)
-{
+function isLeapYear(year) {
     if (year % 100 == 0) {
         return (year % 400 == 0);
     } else {
@@ -144,8 +142,7 @@ function isLeapYear(year)
 }
 
 
-function getNepaliMonthInString(month)
-{
+function getNepaliMonthInString(month) {
     var nepaliMonth = "";
 
     switch (month) {
@@ -200,8 +197,7 @@ function getNepaliMonthInString(month)
     return nepaliMonth;
 }
 
-function getEnglishMonth(month)
-{
+function getEnglishMonth(month) {
     var englishMonth = "";
 
     switch (month) {
@@ -256,8 +252,7 @@ function getEnglishMonth(month)
     return englishMonth;
 }
 
-function getNepaliDayOfWeekInString(day)
-{
+function getNepaliDayOfWeekInString(day) {
     switch (day) {
         case 1:
             day = "आइतबार ";
@@ -290,8 +285,7 @@ function getNepaliDayOfWeekInString(day)
     return day;
 }
 
-function getEnglishDayOfWeekInString(day)
-{
+function getEnglishDayOfWeekInString(day) {
     switch (day) {
         case 1:
             day = "Sunday";
@@ -324,10 +318,9 @@ function getEnglishDayOfWeekInString(day)
     return day;
 }
 
-function convertEnglishDateToNepali(yy, mm, dd)
-{
+function convertEnglishDateToNepali(yy, mm, dd) {
 
-    if(!checkIfDateIsInRange(yy,mm,dd)){
+    if (!checkIfDateIsInRange(yy, mm, dd)) {
         return "Invalid date !";
     }
 
@@ -341,22 +334,19 @@ function convertEnglishDateToNepali(yy, mm, dd)
     var total_eDays = 0;
 
     var day = 7 - 1;
-    var i,j;
+    var i, j;
 
     for (i = 0; i < (yy - def_eyy); i++) {
-        if (isLeapYear(def_eyy + i) == 1){
-            for (j = 0; j < 12; j++){
-                total_eDays = total_eDays+leap_year_months[j];
+        if (isLeapYear(def_eyy + i) == 1) {
+            for (j = 0; j < 12; j++) {
+                total_eDays = total_eDays + leap_year_months[j];
             }
-        }
-
-        else{
-            for (j = 0; j < 12; j++){
+        } else {
+            for (j = 0; j < 12; j++) {
                 total_eDays = total_eDays + month[j];
             }
         }
     }
-
 
 
     for (i = 0; i < (mm - 1); i++) {
@@ -399,21 +389,21 @@ function convertEnglishDateToNepali(yy, mm, dd)
 
 
     var dateString = [];
-    dateString[0] = y+" "+getEnglishMonth(m)+" "+total_nDays+", "+getEnglishDayOfWeekInString(day);
-    dateString[1] = y+" "+getNepaliMonthInString(m)+" "+total_nDays+", "+getNepaliDayOfWeekInString(day);
+    dateString[0] = y + " " + getEnglishMonth(m) + " " + total_nDays + ", " + getEnglishDayOfWeekInString(day);
+    dateString[1] = y + " " + getNepaliMonthInString(m) + " " + total_nDays + ", " + getNepaliDayOfWeekInString(day);
     return dateString;
 
 }
 
-function checkIfDateIsInRange(year, month, day){
-    if(year<1944 || year>2033){
+function checkIfDateIsInRange(year, month, day) {
+    if (year < 1944 || year > 2033) {
         return false;
     }
-    if(month<1 || month >12){
+    if (month < 1 || month > 12) {
         return false;
     }
 
-    if(day<1 || day >31){
+    if (day < 1 || day > 31) {
         return false;
     }
     return true;
