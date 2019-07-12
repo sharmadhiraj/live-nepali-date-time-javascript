@@ -1,10 +1,11 @@
-Live Nepali Date Time JavaScript
+# Live Nepali Date Time JavaScript
 
 Just include this nepali.js in project and create html elements with specified ids and you are good to go !
 
-२०७३ फाल्गुन ११, बुधबार
-2073 Falgun 11, Wednesday
-०८:५०:२६
+२०७६ असार २७, शुक्रबार  
+2076 Asar 27, Friday  
+१७:३१:०७  
+17:31:07  
 
 #### Setup Guide
 1. Add nepali.js to your project & include nepali.js on your page. 
