@@ -1,4 +1,4 @@
-var nepali_years_and_days_in_months = [
+const nepali_years_and_days_in_months = [
     [2000, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
     [2001, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
     [2002, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
@@ -92,19 +92,21 @@ var nepali_years_and_days_in_months = [
     [2090, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30]
 ];
 
-var previousDate = null;
+let previousDate = null;
 
 function updateClock() {
-    var currentDate = new Date();
-    var timeString = addZero(currentDate.getHours()) + ":" + addZero(currentDate.getMinutes()) + ":" + addZero(currentDate.getSeconds());
+    const currentDate = new Date();
+    const timeString = addZero(currentDate.getHours()) + ":" +
+        addZero(currentDate.getMinutes()) + ":"
+        + addZero(currentDate.getSeconds());
     setDataToID('TIME_IN_ENGLISH', timeString);
     setDataToID('TIME_IN_NEPALI', localizeNumber(timeString));
 
     if (!isSameDay(previousDate, currentDate)) {
-        var year = currentDate.getFullYear();
-        var month = currentDate.getMonth() + 1;
-        var day = currentDate.getDate();
-        var dateString = (convertEnglishDateToNepali(year, month, day));
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth() + 1;
+        const day = currentDate.getDate();
+        const dateString = (convertEnglishDateToNepali(year, month, day));
 
         setDataToID('DATE_IN_ENGLISH', dateString[0]);
         setDataToID('DATE_IN_NEPALI', localizeNumber(dateString[1]));
@@ -126,7 +128,9 @@ function setDataToID(id, data) {
 function isSameDay(d1, d2) {
 
     if (d1 instanceof Date && d2 instanceof Date) {
-        return (d1.getYear() == d2.getYear()) && (d1.getMonth() == d2.getMonth()) && (d1.getDay() == d2.getDay());
+        return (d1.getFullYear() === d2.getFullYear()) &&
+            (d1.getMonth() === d2.getMonth()) &&
+            (d1.getDay() === d2.getDay());
     } else {
         return false;
     }
@@ -134,16 +138,15 @@ function isSameDay(d1, d2) {
 }
 
 function isLeapYear(year) {
-    if (year % 100 == 0) {
-        return (year % 400 == 0);
+    if (year % 100 === 0) {
+        return (year % 400 === 0);
     } else {
-        return (year % 4 == 0);
+        return (year % 4 === 0);
     }
 }
 
-
 function getNepaliMonthInString(month) {
-    var nepaliMonth = "";
+    let nepaliMonth = "";
 
     switch (month) {
         case 1:
@@ -198,7 +201,7 @@ function getNepaliMonthInString(month) {
 }
 
 function getEnglishMonth(month) {
-    var englishMonth = "";
+    let englishMonth = "";
 
     switch (month) {
         case 1:
@@ -324,20 +327,20 @@ function convertEnglishDateToNepali(yy, mm, dd) {
         return "Invalid date !";
     }
 
-    var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    var leap_year_months = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const leap_year_months = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-    var def_eyy = 1944;
-    var def_nyy = 2000;
-    var def_nmm = 9;
-    var def_ndd = 17 - 1;
-    var total_eDays = 0;
+    const def_eyy = 1944;
+    const def_nyy = 2000;
+    const def_nmm = 9;
+    const def_ndd = 17 - 1;
+    let total_eDays = 0;
 
-    var day = 7 - 1;
-    var i, j;
+    let day = 7 - 1;
+    let i, j;
 
     for (i = 0; i < (yy - def_eyy); i++) {
-        if (isLeapYear(def_eyy + i) == 1) {
+        if (isLeapYear(def_eyy + i)) {
             for (j = 0; j < 12; j++) {
                 total_eDays = total_eDays + leap_year_months[j];
             }
@@ -350,7 +353,7 @@ function convertEnglishDateToNepali(yy, mm, dd) {
 
 
     for (i = 0; i < (mm - 1); i++) {
-        if (isLeapYear(yy) == 1)
+        if (isLeapYear(yy))
             total_eDays += leap_year_months[i];
         else
             total_eDays += month[i];
@@ -360,12 +363,12 @@ function convertEnglishDateToNepali(yy, mm, dd) {
 
     i = 0;
     j = def_nmm;
-    var total_nDays = def_ndd;
-    var m = def_nmm;
-    var y = def_nyy;
-    var a = 0;
+    let total_nDays = def_ndd;
+    let m = def_nmm;
+    let y = def_nyy;
+    let a = 0;
 
-    while (total_eDays != 0) {
+    while (total_eDays !== 0) {
         a = nepali_years_and_days_in_months[i][j];
         total_nDays++;
         day++;
@@ -388,7 +391,7 @@ function convertEnglishDateToNepali(yy, mm, dd) {
     }
 
 
-    var dateString = [];
+    const dateString = [];
     dateString[0] = y + " " + getEnglishMonth(m) + " " + total_nDays + ", " + getEnglishDayOfWeekInString(day);
     dateString[1] = y + " " + getNepaliMonthInString(m) + " " + total_nDays + ", " + getNepaliDayOfWeekInString(day);
     return dateString;
@@ -403,10 +406,8 @@ function checkIfDateIsInRange(year, month, day) {
         return false;
     }
 
-    if (day < 1 || day > 31) {
-        return false;
-    }
-    return true;
+    return !(day < 1 || day > 31);
+
 }
 
 
@@ -418,7 +419,7 @@ function addZero(i) {
 }
 
 function localizeNumber(temp) {
-    for (var i = 0; i < temp.length; i++) {
+    for (let i = 0; i < temp.length; i++) {
         if (isNumeric(temp[i])) {
             temp = temp.replace(temp[i], englishToNepaliNumber(temp[i]));
         }
