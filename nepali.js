@@ -100,7 +100,7 @@ const NEPALI_MONTH_NAMES = [
 ];
 
 const ENGLISH_MONTH_NAMES = [
-    "", "Baisakh", "Jesth", "Asar", "Srawan", "Bhadra", "Aaswin",
+    "", "Baisakh", "Jestha", "Asar", "Srawan", "Bhadra", "Aaswin",
     "Kartik", "Mangsir", "Paush", "Magh", "Falgun", "Chaitra"
 ];
 
@@ -189,7 +189,7 @@ function refreshClock() {
         );
 
         if (DOM_ELEMENTS?.englishDate) DOM_ELEMENTS.englishDate.textContent = dateParts[0];
-        if (DOM_ELEMENTS?.nepaliDate) DOM_ELEMENTS.nepaliDate.textContent = convertToNepaliDigits(dateParts[1]);
+        if (DOM_ELEMENTS?.nepaliDate) DOM_ELEMENTS.nepaliDate.textContent = dateParts[1];
     }
     previousDate = new Date(now.getTime());
 }
@@ -257,7 +257,7 @@ function convertToNepaliDate(englishYear, englishMonth, englishDay) {
     const englishDateStr = `${nepYear} ${ENGLISH_MONTH_NAMES[nepMonth]} ${nepDay}, ${ENGLISH_DAY_NAMES[weekday]}`;
     const nepaliDateStr = `${nepYear} ${NEPALI_MONTH_NAMES[nepMonth]} ${nepDay}, ${NEPALI_DAY_NAMES[weekday]}`;
 
-    return [englishDateStr, nepaliDateStr];
+    return [englishDateStr, convertToNepaliDigits(nepaliDateStr)];
 }
 
 

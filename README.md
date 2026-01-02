@@ -2,12 +2,17 @@
 
 Display Nepali date and time on your website. Supports live updates as well as one-off date conversions.
 
-##### Example Output:
+#### Example Output:
 
 २०८२ पौष १८, शुक्रबार  
 2082 Paush 18, Friday  
 ०९:२७:२३  
 09:27:23
+
+### TL;DR
+
+Include `nepali.js` and call `updateClock()` to show live Nepali/English date and time, or use
+`convertToNepaliDate(year,month, day)` for one-off conversions. Test suite is available in the `test/` folder.
 
 <hr>
 
@@ -59,6 +64,11 @@ This works independently of the DOM and does not require HTML elements.
 - Supports years from 1944 to 2033 (English calendar).
 - Time automatically converts to Nepali digits for Nepali display.
 - Live clock and one-off conversion functions are independent.
+
+### Testing
+
+A basic test suite is in the `test/` folder. Open `test/index.test.html` to run tests defined in `test/nepali.test.js`,
+with results shown on the page.
 
 ### Future Improvements / Features
 
