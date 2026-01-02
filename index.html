@@ -1,6 +1,5 @@
 <html lang="en">
 <head>
-    <script src="nepali.js" type="text/javascript"></script>
     <title>Live Nepali Date Time</title>
     <meta charset="UTF-8">
 </head>
@@ -11,10 +10,16 @@
     }
 </style>
 
-<body onload=updateClock();>
+<body>
+<div>
     <div id="DATE_IN_NEPALI"></div>
     <div id="DATE_IN_ENGLISH"></div>
     <div id="TIME_IN_NEPALI"></div>
     <div id="TIME_IN_ENGLISH"></div>
+</div>
 </body>
+<script src="nepali.js"></script>
+<script>
+    updateClock()
+</script>
 </html>
