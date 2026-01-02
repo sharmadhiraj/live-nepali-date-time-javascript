@@ -1,0 +1,44 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+/* Passed row */
+tr.passed {
+    background-color: #d4edda;
+}
+
+/* Failed row */
+tr.failed {
+    background-color: #f8d7da;
+}
+
+/* Summary paragraph */
+.test-summary {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.test-summary.passed {
+    color: green;
+}
+
+.test-summary.failed {
+    color: red;
+}
