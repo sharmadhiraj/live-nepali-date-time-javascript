@@ -268,7 +268,8 @@ function isDateSupported(year, month, day) {
     if (month < 1 || month > 12) {
         return false;
     }
-    return !(day < 1 || day > 31);
+    const daysInMonth = (isGregorianLeapYear(year) ? LEAP_YEAR_MONTH_DAYS : GREGORIAN_MONTH_DAYS)[month - 1];
+    return day >= 1 && day <= daysInMonth;
 }
 
 

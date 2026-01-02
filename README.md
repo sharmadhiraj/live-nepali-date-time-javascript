@@ -52,13 +52,28 @@ For direct comparison or single date conversion, you can call:
 
 This works independently of the DOM and does not require HTML elements.
 
-#### Notes
+<hr>
+
+### Notes
 
 - Supports years from 1944 to 2033 (English calendar).
 - Time automatically converts to Nepali digits for Nepali display.
 - Live clock and one-off conversion functions are independent.
 
-#### Feedback & Suggestions
+### Future Improvements / Features
+
+- **Extended Year Support:** Support for English years beyond 2033, so users can convert future dates without
+  limitation.
+- **Customizable Date/Time Format:** Allow users to choose formats, e.g., YYYY/MM/DD, DD-MM-YYYY, 12-hour vs. 24-hour
+  clock, or custom Nepali layouts.
+- **Timezone Awareness:** Automatic adjustment for different timezones to accurately display local Nepali time.
+- **Localization Options:** Support for alternative Nepali scripts, abbreviations, or English transliteration
+  variations.
+- **Performance Optimizations:** Reduce memory and CPU usage for live clocks on pages with multiple instances.
+- **Integration with Frameworks:** Lightweight wrappers for React, Vue, and Angular to simplify integration.
+- **Event Hooks:** Allow developers to run callbacks on date change or at specific times.
+
+### Feedback & Suggestions
 
 Your feedback is welcome! If you notice any inconsistencies, bugs, or have ideas for improvement, please open an issue
 or submit a pull request.
